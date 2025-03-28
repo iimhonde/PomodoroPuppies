@@ -662,37 +662,44 @@ function App() {
           </div>
           
           {timers.map((timer) => (
-            <div className="timer-inputs" key={timer.id}>
-              <input
-                type="text"
-                className="input-field"
-                placeholder="Period Name"
-                value={timer.name}
-                onChange={(e) => handleInputChange(timer.id, "name", e.target.value)}
-              />
-              <input
-                type="text"
-                className="timer-input"
-                placeholder="HH"
-                value={timer.hours}
-                onChange={(e) => handleInputChange(timer.id, "hours", e.target.value)}
-              />
-              <input
-                type="text"
-                className="timer-input"
-                placeholder="MM"
-                value={timer.minutes}
-                onChange={(e) => handleInputChange(timer.id, "minutes", e.target.value)}
-              />
-              <input
-                type="text"
-                className="timer-input"
-                placeholder="SS"
-                value={timer.seconds}
-                onChange={(e) => handleInputChange(timer.id, "seconds", e.target.value)}
-              />
+            <div className="timer-row-wrapper" key={timer.id}>
+              <div className="timer-inputs">
+                <input
+                  type="text"
+                  className="input-field"
+                  placeholder="Period Name"
+                  value={timer.name}
+                  onChange={(e) => handleInputChange(timer.id, "name", e.target.value)}
+                />
+                <input
+                  type="text"
+                  className="timer-input"
+                  placeholder="HH"
+                  value={timer.hours}
+                  onChange={(e) => handleInputChange(timer.id, "hours", e.target.value)}
+                />
+                <input
+                  type="text"
+                  className="timer-input"
+                  placeholder="MM"
+                  value={timer.minutes}
+                  onChange={(e) => handleInputChange(timer.id, "minutes", e.target.value)}
+                />
+                <input
+                  type="text"
+                  className="timer-input"
+                  placeholder="SS"
+                  value={timer.seconds}
+                  onChange={(e) => handleInputChange(timer.id, "seconds", e.target.value)}
+                />
+                <button className="delete-timer-btn" onClick={() => deleteTimer(timer.id)}>
+                  <img src="/delete-icon.png" alt="Delete" />
+                </button>
+
+              </div>
             </div>
           ))}
+
           
           <button className="save-button" onClick={saveTimer}>
             <img src="/save-button.png" alt="Save" />

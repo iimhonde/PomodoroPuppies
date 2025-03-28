@@ -47,6 +47,30 @@
   }
 }
 
+.delete-timer-btn {
+  position: absolute;
+  right: -50px; /* adjust depending on layout */
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.delete-timer-btn img {
+  width: 100%;
+  height: auto;
+}
+
+/* Reveal on hover */
+.timer-row-wrapper:hover .delete-timer-btn {
+  opacity: 1;
+}
 
 
 @font-face {
