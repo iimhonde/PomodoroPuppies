@@ -42,8 +42,9 @@ function App() {
 
   // Timer inputs and saved timers
   const [timers, setTimers] = useState([
-    { id: 1, name: "Period", hours: "00", minutes: "00", seconds: "00" }
+    { id: Date.now(), name: "Period", hours: "00", minutes: "00", seconds: "00" }
   ]);
+  
   const [timerName, setTimerName] = useState("");
   const [savedTimers, setSavedTimers] = useState([]);
 
@@ -270,7 +271,10 @@ function App() {
     };
   }, [targetTime, isPaused]);
   
-
+  const deleteTimer = (id) => {
+    setTimers((prev) => prev.filter((timer) => timer.id !== id));
+  };
+  
   const togglePause = () => {
     if (isPaused) {
       // ▶️ RESUME
@@ -439,16 +443,17 @@ function App() {
 };
 
 
-  const addTimer = () => {
-    const newTimer = {
-      id: timers.length + 1,
-      name: "",
-      hours: "",
-      minutes: "",
-      seconds: ""
-    };
-    setTimers([...timers, newTimer]);
+const addTimer = () => {
+  const newTimer = {
+    id: Date.now(), // ✅ Use unique ID!
+    name: "",
+    hours: "",
+    minutes: "",
+    seconds: ""
   };
+  setTimers([...timers, newTimer]);
+};
+
 
   const saveTimer = () => {
     if (timerName.trim() === "") return;

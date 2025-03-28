@@ -1,51 +1,69 @@
+/* ====================================================
+   Global Background and Containers
+==================================================== */
 .background-container {
   margin: 0;
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background:url('/Background_1.png')  no-repeat center center fixed;
+  background: url('/Background_1.png') no-repeat center center fixed;
   background-size: cover;
-
 }
-
 .background-container.blurred {
   filter: blur(8px);
 }
 
+/* ====================================================
+   Chihuahua Zone & Animations
+==================================================== */
 .chihuahua-zone {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* ensures clicks go through */
+  pointer-events: none;
   z-index: 1000;
 }
-
 .chihuahua {
   position: absolute;
-  width: 250px; /* Adjust as needed */
+  width: 250px;
   height: auto;
   animation: dropChihuahua 1.2s ease-out forwards;
   transition: transform 0.3s ease-in-out;
 }
-
 @keyframes dropChihuahua {
   0% {
     transform: translateY(-150px) scale(1);
     opacity: 0;
   }
-  40% {
-    opacity: 1;
-  }
-  70% {
-    transform: translateY(20px) scale(1.05);
-  }
+  40% { opacity: 1; }
+  70% { transform: translateY(20px) scale(1.05); }
   100% {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
+
+/* ====================================================
+   Timer Row & Delete Button
+==================================================== */
+.timer-row-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+}
+/*.delete-timer-btn {
+  position: absolute;
+  top: 50%; /* Change to 0 if you want it flush at the top
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}*/
 
 .delete-timer-btn {
   position: absolute;
@@ -62,41 +80,41 @@
   height: 40px;
 }
 
+.timer-row-wrapper:hover .delete-timer-btn {
+  opacity: 1;
+}
 .delete-timer-btn img {
   width: 100%;
   height: auto;
 }
 
-/* Reveal on hover */
-.timer-row-wrapper:hover .delete-timer-btn {
-  opacity: 1;
-}
-
-
+/* ====================================================
+   Font Declarations
+==================================================== */
 @font-face {
   font-family: "Heading Now Trial-67 Extrabold";
   src: url("/assets/HeadingNowTrial-67Extrabold.ttf") format("truetype");
   font-weight: normal;
 }
-
 @font-face {
   font-family: "Heading Now Trial-68 Heavy";
   src: url("/assets/HeadingNowTrial-68Heavy.ttf") format("truetype");
   font-weight: bold;
 }
-
 @font-face {
   font-family: "Canda Tawa Regular";
   src: url("/assets/Canda Tawa Regular.ttf") format("truetype");
   font-weight: normal;
 }
-
 @font-face {
   font-family: "Canda Tawa Extra";
   src: url("/assets/Canda Tawa Extra.ttf") format("truetype");
   font-weight: normal;
 }
 
+/* ====================================================
+   Title & Text Styling
+==================================================== */
 .title {
   font-family: "Heading Now Trial-68 Heavy", sans-serif;
   font-size: 104.5px;
@@ -105,132 +123,104 @@
   text-transform: uppercase;
   line-height: 0.9;
   position: relative;
-
-  /* Move the title higher */
-  margin-top: -10px; 
-
-  text-shadow: 
-  -8px -8px 0 #4b2572, /* Top-left */
-   8px -8px 0 #4b2572, /* Top-right */
-  -8px  8px 0 #4b2572, /* Bottom-left */
-   8px  8px 0 #4b2572, /* Bottom-right */
-  -8px  0px 0 #4b2572, /* Left */
-   8px  0px 0 #4b2572, /* Right */
-   0px -8px 0 #4b2572, /* Top */
-   0px  8px 0 #4b2572; /* Bottom */
+  margin-top: -10px;
+  text-shadow: -8px -8px 0 #4b2572,
+                8px -8px 0 #4b2572,
+               -8px  8px 0 #4b2572,
+                8px  8px 0 #4b2572,
+               -8px  0px 0 #4b2572,
+                8px  0px 0 #4b2572,
+                0px -8px 0 #4b2572,
+                0px  8px 0 #4b2572;
 }
+.pomodoro { color: #f4a8c5; }
+.puppies { color: #d4a76e; }
 
-.pomodoro {
-  color: #f4a8c5; /* Light pink */
-  
-}
-
-/* "PUPPIES" Styling */
-.puppies {
-
-  color: #d4a76e; /* Light brown */
-  
-}
-
+/* ====================================================
+   Start Button & Header
+==================================================== */
 .start-button-container {
   position: absolute;
-  bottom: 5%; 
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3000; /* Ensure it is above blurred elements */
+  z-index: 3000;
 }
-
-/* Ensure it's visible even when blurred */
 .background-container.blurred .start-button-container {
   visibility: visible;
   opacity: 1;
 }
-
-
-/* Start Button */
 .start-button {
-  width: 500px; 
+  width: 500px;
   cursor: pointer;
   transition: transform 0.3s;
 }
-
 .start-button:hover {
   transform: scale(1.1);
 }
-
 .header-container {
   position: fixed;
-  top: 1px; /* Move it higher */
+  top: 1px;
   left: 50%;
   transform: translateX(-50%);
-  width: 400px; /* Adjust width as needed */
-  z-index: 50; /* Keep it above everything */
+  width: 400px;
+  z-index: 50;
 }
-
-
-/* Scroll Image */
 .header-image {
   width: 100%;
   height: auto;
 }
 
-
-
+/* ====================================================
+   New Buttons & Containers
+==================================================== */
 .new-buttons {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* ✅ Centers horizontally & vertically */
+  transform: translate(-50%, -50%);
   display: flex;
   gap: 20px;
-
 }
-
 .button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-/* Title above the button - Gradient style */
 .button-title {
   font-family: "Canda Tawa Regular", sans-serif;
   font-weight: normal;
-
-  background: linear-gradient(to right, #b3e5fc, #f8bbd0); /* Light blue to pink gradient */
+  background: linear-gradient(to right, #b3e5fc, #f8bbd0);
   color: #d6a085;
   text-shadow: 2px 2px 2px #65351a;
   padding: 10px 20px;
   font-size: 2.5em;
   font-weight: bold;
-  border-radius: 50px; /* Makes it fully rounded */
+  border-radius: 50px;
   margin-bottom: 8px;
   text-align: center;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
   display: inline-block;
   min-width: 120px;
-
-    justify-content: space-between;
+  justify-content: space-between;
   width: 60%;
-
 }
-
 .pomodoro-title {
-  margin-left: 100px; /* Adjust this value as needed */
+  margin-left: 100px;
 }
-
 .image-button {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
 }
-
 .image-button:hover {
   transform: scale(1.1);
 }
 
-/* RIGHT SIDE BUTTONS */
+/* ====================================================
+   Right Side Buttons
+==================================================== */
 .right-buttons {
   position: fixed;
   right: 0;
@@ -240,12 +230,9 @@
   flex-direction: column;
   gap: 15px;
 }
-
-/* Styling for Right Side Buttons */
 .right-button {
   font-family: "Canda Tawa Regular", sans-serif;
   font-weight: normal;
-
   background: #5a2d0c;
   color: white;
   font-size: 2rem;
@@ -253,49 +240,46 @@
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  writing-mode: vertical-rl; /* Rotate text */
+  writing-mode: vertical-rl;
   transition: 0.3s;
 }
-
 .right-button:hover {
   background: #8b4513;
 }
 
+/* ====================================================
+   Popup Menu
+==================================================== */
 .popup-menu {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #522611; /* Dark brown background */
+  background: #522611;
   padding: 20px;
   border-radius: 20px;
-  width: 500px;
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3), 
+  width: 600px;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3),
               -2px -2px 6px rgba(255, 255, 255, 0.6);
-  
-  display: none; /* Initially hidden */
+  display: none;
   z-index: 2000;
 }
-
-/* Show popup when active */
 .popup-menu.active {
   display: block;
 }
 
-
-
-
-/* Timer Inputs - Align Properly */
+/* ====================================================
+   Timer Inputs & Fields
+==================================================== */
 .timer-inputs {
   display: flex;
-  align-items: center; /* Align items vertically */
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin-top: 10px;
 }
-
-/* Common styles for all input fields */
-.input-field, .timer-input {
+.input-field,
+.timer-input {
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -303,81 +287,66 @@
   font-size: 18px;
   background: white;
   color: #5a2d0c;
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3), 
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3),
               -2px -2px 6px rgba(255, 255, 255, 0.6);
-  
 }
-
 .timer-name-input {
-  width: 100px; /* ✅ Shrink it */
-  flex-shrink: 0; /* ✅ Prevent stretching */
-  
+  width: 100px;
+  flex-shrink: 0;
 }
-
-
-/* Make all inputs flexible inside a flex container */
 .input-field {
-  flex-grow: 2; /* Give more space for the period name */
-  min-width: 100px; /* Adjust the width dynamically */
+  flex-grow: 2;
+  min-width: 100px;
 }
-
-/* Timer inputs are smaller */
 .timer-input {
-  flex-grow: 1; /* Distribute evenly */
+  flex-grow: 1;
   max-width: 50px;
-  min-width: 40px; /* Ensures it's not too small */
+  min-width: 40px;
 }
 
-
+/* ====================================================
+   Save Button & Add/Exit Containers
+==================================================== */
 .save-button {
   display: block;
-  margin: 20px auto; /* ✅ Centers it horizontally */
-  width: 80%; /* ✅ Allows it to stretch */
-  max-width: 250px; /* Prevents it from getting too large */
+  margin: 20px auto;
+  width: 80%;
+  max-width: 250px;
   background: none;
   border: none;
   cursor: pointer;
   text-align: center;
 }
-
-/* Ensure image scales correctly */
 .save-button img {
-  width: 100%; /* ✅ Ensures the button image scales */
+  width: 100%;
   height: auto;
   display: block;
 }
-
 .add-exit-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* ✅ Better spacing */
+  justify-content: space-between;
   width: 100%;
-  gap: 35px; /* ✅ Reduce unnecessary spacing */
+  gap: 35px;
 }
-
-
-
-/* Buttons inside the container */
-.add-timer-btn, .close-btn {
+.add-timer-btn,
+.close-btn {
   background: none;
   border: none;
   cursor: pointer;
-  width: 60px; /* ✅ Ensures buttons are 100px */
+  width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3000; 
+  z-index: 3000;
 }
-
-/* Ensure images fit properly */
-.add-timer-btn img, .close-btn img {
-  width: 70px; /* Set an appropriate width */
+.add-timer-btn img,
+.close-btn img {
+  width: 70px;
   height: 70px;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
 }
-
-
 .add-timer-text {
   position: fixed;
   top: 20px;
@@ -387,63 +356,48 @@
   font-family: "Canda Tawa Regular", sans-serif;
 }
 
-
-
-
+/* ====================================================
+   Balloon Container & Elements
+==================================================== */
 .balloon-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align balloons at the top */
-  gap: 20px; /* Space between balloons */
-  flex-wrap: wrap; /* Ensure they wrap if too many */
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
   position: absolute;
-  top: 20vh; /* Moves it higher up the screen */
+  top: 20vh;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-
   z-index: 1000;
 }
-
-
-
 .balloon.selected {
-  
-  filter: drop-shadow(0px 0px 10px gold); /* Glow effect */
+  filter: drop-shadow(0px 0px 10px gold);
 }
-
-
 .balloon-image {
-  width: 200px; /* Adjust size */
+  width: 200px;
   height: auto;
 }
-
-
 .balloon-label {
-  position: absolute; 
-  top: -80px; /* adjust as needed to position above the balloon */
+  position: absolute;
+  top: -80px;
   left: 50%;
-  transform: translateX(-50%); 
-  width: 160px; /* match your scroll image's natural width */
+  transform: translateX(-50%);
+  width: 160px;
   height: auto;
-
-  /* Key difference: we let the .balloon-label be a "relative container" */
-  position: relative; /* Switch from absolute? Or keep absolute if you want it above balloon? */
+  position: relative;
 }
-
-/* The scroll image is displayed as a block filling the label container */
 .balloon-label img {
   display: block;
   width: 100%;
   height: auto;
 }
-
-/* Absolutely position the text within the label container */
 .balloon-label .scroll-text {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   font-size: 26px;
   font-weight: bold;
   color: #5a2d0c;
@@ -451,7 +405,9 @@
   white-space: nowrap;
 }
 
-
+/* ====================================================
+   Floating Add Button
+==================================================== */
 .floating-add-btn {
   position: fixed;
   top: 20px;
@@ -466,43 +422,40 @@
   font-size: 24px;
   font-weight: bold;
   color: black;
-  visibility: hidden; /* Initially hidden */
+  visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
-
 .floating-add-btn.visible {
-  visibility: visible; /* Make it visible */
+  visibility: visible;
   opacity: 1;
 }
-
 .floating-add-btn img {
   width: 60px;
   height: auto;
 }
 
-
+/* ====================================================
+   Flip Section & Timer Controls
+==================================================== */
 .flip-section {
   position: absolute;
-  top: 25%; /* Moves the whole unit (clock + buttons) down */
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* space between flip clock and buttons */
+  gap: 20px;
   z-index: 1000;
 }
-
 .flip-clock-container {
-  /* Remove absolute positioning from here */
   position: static;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 160px;
 }
-
 .timer-controls {
   display: flex;
   justify-content: center;
@@ -510,100 +463,90 @@
   gap: 50px;
 }
 
-
-
-
+/* ====================================================
+   Session Name & PP Image
+==================================================== */
 .session-name-container {
-  position: absolute; /* Position absolutely relative to the viewport (or a positioned parent) */
-  top: 10%; /* Lower value moves it closer to the top */
+  position: absolute;
+  top: 10%;
   left: 65%;
   transform: translateX(-50%);
   width: 100px;
   height: auto;
 }
-
-
 .session-name {
   display: block;
   width: 100%;
   height: auto;
 }
-
 .pp-img {
   display: block;
-  width: 800px; /* Increase this value to make the image bigger */
-  height: auto; /* Keeps the aspect ratio correct */
-  
+  width: 800px;
+  height: auto;
 }
 
+/* ====================================================
+   Balloon Floating Animation
+==================================================== */
 @keyframes floatUpDown {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-20px); }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
   100% { transform: translateY(0); }
 }
-
 .balloon.floating {
   animation: floatUpDown 2s ease-in-out infinite;
 }
 
-
+/* ====================================================
+   General Button Styles
+==================================================== */
 .button-style {
   font-family: "Canda Tawa Regular", sans-serif;
   font-size: 2.2em;
   font-weight: bold;
   text-align: center;
   padding: 12px 24px;
-
   background: linear-gradient(to right, #b3e5fc, #f8bbd0);
   color: #d6a085;
   text-shadow: 2px 2px 2px #65351a;
-
   border: none;
   border-radius: 50px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  min-width: 180px; /* make all buttons same width */
+  min-width: 180px;
   height: 70px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 .button-style:hover {
   transform: scale(1.05);
 }
-
 .button-title {
-  composes: button-style; /* only works in CSS Modules — so skip this */
+  /* "composes" is for CSS Modules only */
   margin-bottom: 8px;
 }
-
-/* In normal CSS, just add both class names */
 .period-options {
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease;
   font-size: 29.1px;
 }
-
-/* Hover effect */
 .period-options:hover {
   transform: scale(1.05);
 }
 
+/* ====================================================
+   Scroll Banner
+==================================================== */
 .scroll-banner {
   position: relative;
   display: inline-block;
- 
   top: -30px;
   right: 658px;
 }
-
 .scroll-text-banner {
- 
   position: absolute;
   top: 40%;
   left: 50%;
@@ -615,6 +558,9 @@
   white-space: nowrap;
 }
 
+/* ====================================================
+   Final Popup
+==================================================== */
 .final-popup {
   position: fixed;
   top: 0;
@@ -627,7 +573,6 @@
   justify-content: center;
   z-index: 5000;
 }
-
 .final-popup-content {
   background: #fffafc;
   border: 4px dashed pink;
@@ -637,12 +582,10 @@
   animation: popBounce 0.5s ease-out;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-
 .final-popup-img {
   width: 150px;
   margin-bottom: 1rem;
 }
-
 .popup-close-btn {
   background: #fcddec;
   border: none;
@@ -655,16 +598,17 @@
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 .popup-close-btn:hover {
   transform: scale(1.05);
 }
-
 @keyframes popBounce {
   0% { transform: scale(0.6); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* ====================================================
+   No Timers Popup
+==================================================== */
 .no-timers-popup {
   position: fixed;
   top: 0;
@@ -678,7 +622,6 @@
   z-index: 6000;
   animation: fadeIn 0.4s ease-in-out;
 }
-
 .no-timers-content {
   background: #fff4f9;
   border: 3px solid #ffb6d2;
@@ -687,27 +630,18 @@
   text-align: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-
 @keyframes floaty {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
 }
-
 .no-timers-img {
   max-width: 200px;
   animation: floaty 2s ease-in-out infinite;
 }
-
 .no-timers-content p {
-
   font-size: 1rem;
   color: #333;
 }
-
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
