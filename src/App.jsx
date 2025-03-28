@@ -46,7 +46,11 @@ function App() {
   ]);
   
   const [timerName, setTimerName] = useState("");
-  const [savedTimers, setSavedTimers] = useState([]);
+  const [savedTimers, setSavedTimers] = useState(() => {
+    const stored = localStorage.getItem("savedTimers");
+    return stored ? JSON.parse(stored) : [];
+  });
+  
 
   const [isFloatingVisible, setIsFloatingVisible] = useState(false);
 
@@ -179,7 +183,7 @@ function App() {
     setIsCleared(false);            // Show the balloons/options again
   };
   
-  useEffect(() => {
+  /*useEffect(() => {
     localStorage.setItem("savedTimers", JSON.stringify(savedTimers));
   }, [savedTimers]);
   
@@ -189,7 +193,11 @@ function App() {
       setSavedTimers(JSON.parse(stored));
     }
   }, []);
+  */
+
   
+
+
 
   useEffect(() => {
     console.log("Balloon highlighted:", isBalloonHighlighted);
