@@ -1,0 +1,690 @@
+.background-container {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background:url('/Background_1.png')  no-repeat center center fixed;
+  background-size: cover;
+
+}
+
+.background-container.blurred {
+  filter: blur(8px);
+}
+
+.chihuahua-zone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* ensures clicks go through */
+  z-index: 1000;
+}
+
+.chihuahua {
+  position: absolute;
+  width: 250px; /* Adjust as needed */
+  height: auto;
+  animation: dropChihuahua 1.2s ease-out forwards;
+  transition: transform 0.3s ease-in-out;
+}
+
+@keyframes dropChihuahua {
+  0% {
+    transform: translateY(-150px) scale(1);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(20px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+@font-face {
+  font-family: "Heading Now Trial-67 Extrabold";
+  src: url("/assets/HeadingNowTrial-67Extrabold.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Heading Now Trial-68 Heavy";
+  src: url("/assets/HeadingNowTrial-68Heavy.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Canda Tawa Regular";
+  src: url("/assets/Canda Tawa Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Canda Tawa Extra";
+  src: url("/assets/Canda Tawa Extra.ttf") format("truetype");
+  font-weight: normal;
+}
+
+.title {
+  font-family: "Heading Now Trial-68 Heavy", sans-serif;
+  font-size: 104.5px;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 0.9;
+  position: relative;
+
+  /* Move the title higher */
+  margin-top: -10px; 
+
+  text-shadow: 
+  -8px -8px 0 #4b2572, /* Top-left */
+   8px -8px 0 #4b2572, /* Top-right */
+  -8px  8px 0 #4b2572, /* Bottom-left */
+   8px  8px 0 #4b2572, /* Bottom-right */
+  -8px  0px 0 #4b2572, /* Left */
+   8px  0px 0 #4b2572, /* Right */
+   0px -8px 0 #4b2572, /* Top */
+   0px  8px 0 #4b2572; /* Bottom */
+}
+
+.pomodoro {
+  color: #f4a8c5; /* Light pink */
+  
+}
+
+/* "PUPPIES" Styling */
+.puppies {
+
+  color: #d4a76e; /* Light brown */
+  
+}
+
+.start-button-container {
+  position: absolute;
+  bottom: 5%; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000; /* Ensure it is above blurred elements */
+}
+
+/* Ensure it's visible even when blurred */
+.background-container.blurred .start-button-container {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* Start Button */
+.start-button {
+  width: 500px; 
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.start-button:hover {
+  transform: scale(1.1);
+}
+
+.header-container {
+  position: fixed;
+  top: 1px; /* Move it higher */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px; /* Adjust width as needed */
+  z-index: 50; /* Keep it above everything */
+}
+
+
+/* Scroll Image */
+.header-image {
+  width: 100%;
+  height: auto;
+}
+
+
+
+.new-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* ✅ Centers horizontally & vertically */
+  display: flex;
+  gap: 20px;
+
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title above the button - Gradient style */
+.button-title {
+  font-family: "Canda Tawa Regular", sans-serif;
+  font-weight: normal;
+
+  background: linear-gradient(to right, #b3e5fc, #f8bbd0); /* Light blue to pink gradient */
+  color: #d6a085;
+  text-shadow: 2px 2px 2px #65351a;
+  padding: 10px 20px;
+  font-size: 2.5em;
+  font-weight: bold;
+  border-radius: 50px; /* Makes it fully rounded */
+  margin-bottom: 8px;
+  text-align: center;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+  display: inline-block;
+  min-width: 120px;
+
+    justify-content: space-between;
+  width: 60%;
+
+}
+
+.pomodoro-title {
+  margin-left: 100px; /* Adjust this value as needed */
+}
+
+.image-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.image-button:hover {
+  transform: scale(1.1);
+}
+
+/* RIGHT SIDE BUTTONS */
+.right-buttons {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Styling for Right Side Buttons */
+.right-button {
+  font-family: "Canda Tawa Regular", sans-serif;
+  font-weight: normal;
+
+  background: #5a2d0c;
+  color: white;
+  font-size: 2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  writing-mode: vertical-rl; /* Rotate text */
+  transition: 0.3s;
+}
+
+.right-button:hover {
+  background: #8b4513;
+}
+
+.popup-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #522611; /* Dark brown background */
+  padding: 20px;
+  border-radius: 20px;
+  width: 500px;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3), 
+              -2px -2px 6px rgba(255, 255, 255, 0.6);
+  
+  display: none; /* Initially hidden */
+  z-index: 2000;
+}
+
+/* Show popup when active */
+.popup-menu.active {
+  display: block;
+}
+
+
+
+
+/* Timer Inputs - Align Properly */
+.timer-inputs {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Common styles for all input fields */
+.input-field, .timer-input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  background: white;
+  color: #5a2d0c;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3), 
+              -2px -2px 6px rgba(255, 255, 255, 0.6);
+  
+}
+
+.timer-name-input {
+  width: 100px; /* ✅ Shrink it */
+  flex-shrink: 0; /* ✅ Prevent stretching */
+  
+}
+
+
+/* Make all inputs flexible inside a flex container */
+.input-field {
+  flex-grow: 2; /* Give more space for the period name */
+  min-width: 100px; /* Adjust the width dynamically */
+}
+
+/* Timer inputs are smaller */
+.timer-input {
+  flex-grow: 1; /* Distribute evenly */
+  max-width: 50px;
+  min-width: 40px; /* Ensures it's not too small */
+}
+
+
+.save-button {
+  display: block;
+  margin: 20px auto; /* ✅ Centers it horizontally */
+  width: 80%; /* ✅ Allows it to stretch */
+  max-width: 250px; /* Prevents it from getting too large */
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Ensure image scales correctly */
+.save-button img {
+  width: 100%; /* ✅ Ensures the button image scales */
+  height: auto;
+  display: block;
+}
+
+.add-exit-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ✅ Better spacing */
+  width: 100%;
+  gap: 35px; /* ✅ Reduce unnecessary spacing */
+}
+
+
+
+/* Buttons inside the container */
+.add-timer-btn, .close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 60px; /* ✅ Ensures buttons are 100px */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000; 
+}
+
+/* Ensure images fit properly */
+.add-timer-btn img, .close-btn img {
+  width: 70px; /* Set an appropriate width */
+  height: 70px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+
+.add-timer-text {
+  position: fixed;
+  top: 20px;
+  right: 70px;
+  font-size: 18px;
+  color: black;
+  font-family: "Canda Tawa Regular", sans-serif;
+}
+
+
+
+
+.balloon-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align balloons at the top */
+  gap: 20px; /* Space between balloons */
+  flex-wrap: wrap; /* Ensure they wrap if too many */
+  position: absolute;
+  top: 20vh; /* Moves it higher up the screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+
+  z-index: 1000;
+}
+
+
+
+.balloon.selected {
+  
+  filter: drop-shadow(0px 0px 10px gold); /* Glow effect */
+}
+
+
+.balloon-image {
+  width: 200px; /* Adjust size */
+  height: auto;
+}
+
+
+.balloon-label {
+  position: absolute; 
+  top: -80px; /* adjust as needed to position above the balloon */
+  left: 50%;
+  transform: translateX(-50%); 
+  width: 160px; /* match your scroll image's natural width */
+  height: auto;
+
+  /* Key difference: we let the .balloon-label be a "relative container" */
+  position: relative; /* Switch from absolute? Or keep absolute if you want it above balloon? */
+}
+
+/* The scroll image is displayed as a block filling the label container */
+.balloon-label img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Absolutely position the text within the label container */
+.balloon-label .scroll-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  font-size: 26px;
+  font-weight: bold;
+  color: #5a2d0c;
+  font-family: "Canda Tawa Regular", sans-serif;
+  white-space: nowrap;
+}
+
+
+.floating-add-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Canda Tawa Regular", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  visibility: hidden; /* Initially hidden */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.floating-add-btn.visible {
+  visibility: visible; /* Make it visible */
+  opacity: 1;
+}
+
+.floating-add-btn img {
+  width: 60px;
+  height: auto;
+}
+
+
+.flip-section {
+  position: absolute;
+  top: 25%; /* Moves the whole unit (clock + buttons) down */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* space between flip clock and buttons */
+  z-index: 1000;
+}
+
+.flip-clock-container {
+  /* Remove absolute positioning from here */
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+
+
+
+.session-name-container {
+  position: absolute; /* Position absolutely relative to the viewport (or a positioned parent) */
+  top: 10%; /* Lower value moves it closer to the top */
+  left: 65%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: auto;
+}
+
+
+.session-name {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pp-img {
+  display: block;
+  width: 800px; /* Increase this value to make the image bigger */
+  height: auto; /* Keeps the aspect ratio correct */
+  
+}
+
+@keyframes floatUpDown {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.balloon.floating {
+  animation: floatUpDown 2s ease-in-out infinite;
+}
+
+
+.button-style {
+  font-family: "Canda Tawa Regular", sans-serif;
+  font-size: 2.2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 24px;
+
+  background: linear-gradient(to right, #b3e5fc, #f8bbd0);
+  color: #d6a085;
+  text-shadow: 2px 2px 2px #65351a;
+
+  border: none;
+  border-radius: 50px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 180px; /* make all buttons same width */
+  height: 70px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.button-style:hover {
+  transform: scale(1.05);
+}
+
+.button-title {
+  composes: button-style; /* only works in CSS Modules — so skip this */
+  margin-bottom: 8px;
+}
+
+/* In normal CSS, just add both class names */
+.period-options {
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 29.1px;
+}
+
+/* Hover effect */
+.period-options:hover {
+  transform: scale(1.05);
+}
+
+.scroll-banner {
+  position: relative;
+  display: inline-block;
+ 
+  top: -30px;
+  right: 658px;
+}
+
+.scroll-text-banner {
+ 
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) perspective(50px) rotateX(10deg);
+  font-size: 76px;
+  font-weight: bold;
+  color: #5a2d0c;
+  font-family: "Canda Tawa Regular", sans-serif;
+  white-space: nowrap;
+}
+
+.final-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(250, 230, 250, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+}
+
+.final-popup-content {
+  background: #fffafc;
+  border: 4px dashed pink;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  animation: popBounce 0.5s ease-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.final-popup-img {
+  width: 150px;
+  margin-bottom: 1rem;
+}
+
+.popup-close-btn {
+  background: #fcddec;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d23a7d;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.popup-close-btn:hover {
+  transform: scale(1.05);
+}
+
+@keyframes popBounce {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.no-timers-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 240, 250, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6000;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.no-timers-content {
+  background: #fff4f9;
+  border: 3px solid #ffb6d2;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.no-timers-img {
+  max-width: 200px;
+  animation: floaty 2s ease-in-out infinite;
+}
+
+.no-timers-content p {
+
+  font-size: 1rem;
+  color: #333;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

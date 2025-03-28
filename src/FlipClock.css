@@ -1,0 +1,70 @@
+/* ✅ Main Flip Clock Layout */
+.flip-clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* space between digits */
+  }
+  
+  /* ✅ Each Digit Block */
+  .fcc-digit-block {
+    width: 120px;
+    height: 160px;
+    background-color: #702c2c; /* deep red like your mockup */
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 120px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* ✅ Animated Text Inside */
+  .fcc-digit-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* ✅ Divider Line Like a Real Flip Clock */
+  .fcc-divider {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #65351a;
+    opacity: 0.4;
+    transform: translateY(-50%);
+  }
+  
+  /* ✅ Flip Clock Container */
+  .flip-clock-container {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* ✅ Colon Between Time Digits */
+  .fcc-colon {
+    font-size: 120px;
+    font-weight: bold;
+    padding: 0 8px;
+    color: #ffffffaa;
+    font-family: 'Orbitron', sans-serif;
+    user-select: none;
+  }
+  
+  .fcc-digit-block.paused {
+    filter: grayscale(40%) brightness(85%);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+  }
+  
