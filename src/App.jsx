@@ -205,11 +205,10 @@ function App() {
 
   // Call startSelectedTimer when currentPeriodIndex changes
   useEffect(() => {
-    if (selectedBalloon !== null) {
-      startSelectedTimer();
-    }
+    const period = getCurrentPeriod();
+    if (period) startSelectedTimer();
   }, [currentPeriodIndex]);
-
+  
   useEffect(() => {
     if (isCleared && savedTimers.length > 0 && !isStarted) {
       setIsBalloonVisible(true);
@@ -431,24 +430,63 @@ function App() {
     }, 300);
   };
 
-  const closePopup = () => {
+  /*const closePopup = () => {
     setIsPopupOpen(false);
     setIsBlurring(false);
-
+  
     if (savedTimers.length > 0) {
-      setIsBalloonVisible(true); // show options
+      setIsFloatingVisible(true);
+      setIsBalloonVisible(true); // ✅ Show the balloon options again!
     } else {
       setIsStarted(false);
       setIsCleared(false);
       setSelectedBalloon(null);
-
+  
       // 👇 show the no-timers warning!
       setShowNoTimersPopup(true);
-
+  
       // auto-close after 3 seconds
       setTimeout(() => setShowNoTimersPopup(false), 3000);
     }
-};
+  };
+  */
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  
+    // 🧼 Reset timer inputs
+    setTimers([
+      { id: 1, name: "Period", hours: "00", minutes: "00", seconds: "00" }
+    ]);
+  
+    if (savedTimers.length === 0) {
+      // 🪂 Float user into first-timer creation
+      setIsStarted(false);
+      setIsCleared(false);
+      setSelectedBalloon(null);
+      setIsBlurring(false);
+      setShowNoTimersPopup(true);
+  
+      setTimeout(() => {
+        setShowNoTimersPopup(false);
+        setSelectedBalloon(null);
+        setIsBalloonHighlighted(false);
+        setIsCleared(true);
+        setIsStarted(true);
+        setIsPopupOpen(true);
+      }, 3000);
+    } else {
+      // ✅ Restore proper state to re-enable balloon selection
+      setIsStarted(false);
+      setIsCleared(true);
+      setIsBlurring(true);
+      setIsBalloonVisible(true);
+      setSelectedBalloon(null);
+      setIsBalloonHighlighted(false);
+    }
+  };
+  
+  
 
 
 const addTimer = () => {
