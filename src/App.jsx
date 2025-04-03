@@ -833,8 +833,8 @@ const addTimer = () => {
         <div className="no-timers-content">
           <img src="/sad-balloon.png" alt="No Timers Yet" className="no-timers-img" />
           <p>You don’t have any timers yet!</p>
-          <p>Click START to create your first one 🎈</p>
           <p>(Now let's float you right on back...)</p>
+          <p>(...Please wait...)</p>
         </div>
       </div>
     )}
