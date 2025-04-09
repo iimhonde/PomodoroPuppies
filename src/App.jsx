@@ -50,7 +50,9 @@ function App() {
     const stored = localStorage.getItem("savedTimers");
     return stored ? JSON.parse(stored) : [];
   });
-  
+  useEffect(() => {
+    localStorage.setItem("savedTimers", JSON.stringify(savedTimers));
+  }, [savedTimers]);
 
   const [isFloatingVisible, setIsFloatingVisible] = useState(false);
 
@@ -183,11 +185,9 @@ function App() {
     setIsCleared(false);            // Show the balloons/options again
   };
   
-  /*useEffect(() => {
-    localStorage.setItem("savedTimers", JSON.stringify(savedTimers));
-  }, [savedTimers]);
+ 
   
-  useEffect(() => {
+ /* useEffect(() => {
     const stored = localStorage.getItem("savedTimers");
     if (stored) {
       setSavedTimers(JSON.parse(stored));
