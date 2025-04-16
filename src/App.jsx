@@ -51,6 +51,13 @@ function App() {
     return stored ? JSON.parse(stored) : [];
   });
   useEffect(() => {
+    const stored = localStorage.getItem("savedTimers");
+    if (stored) {
+      setSavedTimers(JSON.parse(stored));
+    }
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("savedTimers", JSON.stringify(savedTimers));
   }, [savedTimers]);
 
@@ -60,6 +67,7 @@ function App() {
   const [selectedBalloon, setSelectedBalloon] = useState(null);
   const [isBalloonVisible, setIsBalloonVisible] = useState(true);
   const [isBalloonHighlighted, setIsBalloonHighlighted] = useState(false);
+  const [hoveredTimerId, setHoveredTimerId] = useState(null);
 
   // New state for cycling periods
   const [currentPeriodIndex, setCurrentPeriodIndex] = useState(0);
@@ -451,16 +459,16 @@ function App() {
   };
   */
 
-  const closePopup = () => {
+  const closePopup = (forceReset = false, overrideSavedTimers = null) => {
     setIsPopupOpen(false);
+    const timersToCheck = overrideSavedTimers ?? savedTimers;
   
-    // 🧼 Reset timer inputs
-    setTimers([
-      { id: 1, name: "Period", hours: "00", minutes: "00", seconds: "00" }
-    ]);
+    // Reset timer inputs
+    setTimers([{ id: 1, name: "Period", hours: "00", minutes: "00", seconds: "00" }]);
   
-    if (savedTimers.length === 0) {
-      // 🪂 Float user into first-timer creation
+    // Only force reset if there really are no timers
+    if (forceReset && timersToCheck.length === 0) {
+      // Float user into first-timer creation
       setIsStarted(false);
       setIsCleared(false);
       setSelectedBalloon(null);
@@ -474,9 +482,10 @@ function App() {
         setIsCleared(true);
         setIsStarted(true);
         setIsPopupOpen(true);
+        setIsBlurring(true); // explicitly restore the blur
       }, 3000);
     } else {
-      // ✅ Restore proper state to re-enable balloon selection
+      // Restore proper state for balloon selection
       setIsStarted(false);
       setIsCleared(true);
       setIsBlurring(true);
@@ -485,6 +494,7 @@ function App() {
       setIsBalloonHighlighted(false);
     }
   };
+  
   
   
 
@@ -768,7 +778,16 @@ const addTimer = () => {
         </button>
       )}
 
-
+      {showNoTimersPopup && (
+        <div className="no-timers-popup">
+          <div className="no-timers-content">
+            <img src="/sad-balloon.png" alt="No Timers Yet" className="no-timers-img" />
+            <p>You don’t have any timers yet!</p>
+            <p>(Now let's float you right on back...)</p>
+            <p>(...Please wait...)</p>
+          </div>
+        </div>
+    )}
       
 
       {/* Balloon Selection */}
@@ -777,31 +796,65 @@ const addTimer = () => {
        
        <div className="balloon-container">
         {savedTimers.map((timer) => (
+          <div
+            key={timer.id} // ✅ still here!
+            className="balloon-wrapper"
+            onMouseEnter={() => setHoveredTimerId(timer.id)}
+            onMouseLeave={() => setHoveredTimerId(null)}
+            style={{
+              position: "relative",
+              display: "inline-block",
+              cursor: hoveredTimerId === timer.id ? 'url("/pin.png"), auto' : "default"
+            }}
+          >
             <div
-              key={timer.id}
-              className={`balloon 
-                ${selectedBalloon === timer.id ? "selected floating" : ""}`}
-              onClick={() => {  
+              className={`balloon ${selectedBalloon === timer.id ? "selected floating" : ""}`}
+              onClick={() => {
                 setSelectedBalloon(timer.id);
                 setIsBalloonHighlighted(true);
                 setIsBlurring(true);
-                console.log("Selected Balloon:", timer);
               }}
+              style={{ position: "relative" }}
             >
-        
-              {/* 1) A wrapper for the scroll image and text, absolutely positioned above the balloon */}
               <div className="balloon-label-wrapper">
-                {/* 2) The label container is relative */}
                 <div className="balloon-label">
                   <img src="/scroll.png" alt="Scroll" className="scroll-img" />
                   <span className="scroll-text">{timer.name}</span>
                 </div>
               </div>
-              
-              {/* The balloon itself */}
-              <img src="/balloon.png" alt={timer.name} className="balloon-image" />
+
+              <img
+                src={hoveredTimerId === timer.id ? "/sad-balloon.png" : "/balloon.png"}
+                className="balloon-image"
+                alt="Balloon"
+              />
             </div>
-          ))}
+
+            {hoveredTimerId === timer.id && (
+              <div
+                className="pop-delete"
+                onClick={(e) => {
+                  e.stopPropagation();
+                
+                  setSavedTimers((prev) => {
+                    const updated = prev.filter((t) => t.id !== timer.id);
+                
+                    if (updated.length === 0) {
+                      closePopup(true, updated); // 👈 Force reset into timer creation mode
+                    }
+                
+                    return updated;
+                  });
+                }}
+                
+              >
+                Pop?
+              </div>
+            )}
+          </div>
+        ))}
+
+
         </div>
 
       )}
@@ -828,16 +881,7 @@ const addTimer = () => {
         </div>
       </div>
     )}
-    {showNoTimersPopup && (
-      <div className="no-timers-popup">
-        <div className="no-timers-content">
-          <img src="/sad-balloon.png" alt="No Timers Yet" className="no-timers-img" />
-          <p>You don’t have any timers yet!</p>
-          <p>(Now let's float you right on back...)</p>
-          <p>(...Please wait...)</p>
-        </div>
-      </div>
-    )}
+    
 
 
   </div>

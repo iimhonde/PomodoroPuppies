@@ -378,6 +378,9 @@
 .balloon-image {
   width: 200px;
   height: auto;
+  z-index: 1;
+  position: relative; /* <-- make sure it's not absolute unless you want it stacked intentionally */
+  pointer-events: none; /* 👈 IMPORTANT: let mouse events pass through */
 }
 .balloon-label {
   position: absolute;
@@ -389,6 +392,7 @@
   position: relative;
 }
 .balloon-label img {
+  pointer-events: none;
   display: block;
   width: 100%;
   height: auto;
@@ -404,6 +408,50 @@
   font-family: "Canda Tawa Regular", sans-serif;
   white-space: nowrap;
 }
+
+  .balloon-wrapper {
+  /*outline: 2px solid limegreen;*/
+  position: relative;
+  display: inline-block;
+  padding-right: 70px; /* ✅ reserves space so Pop? stays inside wrapper */
+ overflow: visible; 
+}
+
+.balloon-wrapper::after {
+ /* outline: 2px solid limegreen;*/
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 60px;  /* match the horizontal gap */
+  height: 100%;
+  background: transparent;
+  pointer-events: auto;
+}
+
+
+
+/* Pop? Button */
+.pop-delete {
+  /*outline: 2px solid red;*/
+  position: absolute;
+  top: -40px;
+  left: 40%;
+  transform: translateX(-50%);
+  background: #fffafc;
+  padding: 12px 18px;  /* ← bigger hitbox */
+  font-size: 1.2rem;
+  border: 2px  #d23a7d;
+  border-radius: 12px;
+  color: #d23a7d;
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: 10;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
 
 /* ====================================================
    Floating Add Button
